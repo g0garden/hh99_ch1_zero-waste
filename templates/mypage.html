@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='mypage.js') }}"></script>
+    <title>마이페이지</title>
+  </head>
+  <body>
+
+    <div class="user-wrap">
+      <div class="nav">
+        <div class="user-nav-left">
+          <a href="/"><b>제로웨이스트</b></a>
+
+        </div>
+        <div class="user-nav-right">
+          <a href="/"><i class="fas fa-times"></i></a>
+        </div>
+      </div>
+      <div class="user-title-head">
+        <div class="user-title">
+          <div class="user-greeting">안녕하세요! <br/> {{ user_info.name }}님!</div>
+          <div class="user-profile">
+            <a class="user-avata"><img class="user-avata-img" src="{{ url_for('static', filename='imgeeee.png') }}"></a>
+            <div class="user-profile-info">
+
+              <span class="user-profile-id"><strong>{{ user_info.id }}</strong></span><br>
+
+              <span class="user-profile-about">
+                {% if user_info.intro == '' %}
+                  <b> 자기 소개를 설정해 주세요!</b>
+                {% else %}
+                  {{ user_info.intro }}
+                {% endif %}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 본인이 아니면 숨기고  -->
+      <section class="user-info">
+        <div class="user-info-container">
+          <div class="user-basic-info">
+            <p class="user-basic-info-title">기본 회원정보</p>
+
+            <div class="user-info-items">
+              <div class="user-info-item">이 름</div>
+              <span class="user-info-input">
+                <input id="input-name" type="text" value="{{ user_info.name }}"/>
+              </span>
+            </div>
+
+            <div class="user-info-items">
+              <div class="user-info-item" id="orderme">자기소개</div>
+              <div class="user-info-input">
+                <span class="user-info-pw-change">
+                  <textarea id="textarea-about" class="textarea"></textarea>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="user-info-update">
+            <a class="user-profile-update" aria-label="edit" onclick="update_profile()">
+              프로필 수정&nbsp;&nbsp;&nbsp;
+              <span class="profile-icon is-small">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </span>
+            </a>
+            <a class="user-logout" aria-label="logout" onclick="sign_out()">
+              로그 아웃&nbsp;&nbsp;&nbsp;
+              <span class="logout-icon is-small">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

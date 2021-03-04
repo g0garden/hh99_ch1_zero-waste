@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='imgeeee.png') }}">
+    <meta property="og:title" content="제로 웨이스트"/>
+    <meta property="og:description" content="지구 살리기 프로젝트! 제로웨이스트 라는 사회운동을 다른 사람들이 어떻게 실천하고 있는지 인스타그램에서 살펴보고 마킹해봐요!"/>
+    <meta property="og:image"
+          content="{{ url_for('static', filename='https://cdn.imweb.me/upload/S2017101059dc82fe9c146/5a71fecf5431c.jpg') }}"/>
+
+    <title>로그인</title>
+  </head>
+  <body>
+    <div class="login-wrap">
+      <div class="login-main">
+        <div class="login-main-container">
+          <div class="login-main-left">
+            <img class="login-main-left-img" src="https://cdn.imweb.me/upload/S2017101059dc82fe9c146/5a71fecf5431c.jpg">
+          </div>
+          <div class="login-main-right">
+            <form class="login-form-login">
+              <div class="login-form-login-input">
+                <label class="login-input-boxes">
+                            <span class="login-input-icon">
+                                <i class="fas fa-user-tag"></i>
+                            </span>
+                  <input class="input-box" type="text" placeholder="아이디" id="login-id">
+                </label>
+                <label class="login-input-boxes">
+                            <span class="login-input-icon">
+                                <i class="fas fa-key"></i>
+                            </span>
+                  <input class="input-box" type="password" placeholder="비밀번호" id="login-pw">
+                </label>
+                <div class="login-btn-login">
+                  <button onclick="sign_in()" type="button" class="">로그인</button>
+                </div>
+                <div class="login-new-register">
+                  <span class="new-register-ask">비회원이신가요?</span><span class="new-register-link"><a
+                    href="register">회원가입</a> </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="login-footer">
+          ©Team 2. All rights reserved.
+        </div>
+
+      </footer>
+    </div>
+  </body>
+</html>

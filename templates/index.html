@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='imgeeee.png') }}">
+    <meta property="og:title" content="제로 웨이스트"/>
+    <meta property="og:description" content="지구 살리기 프로젝트! 제로웨이스트 라는 사회운동을 다른 사람들이 어떻게 실천하고 있는지 인스타그램에서 살펴보고 마킹해봐요!"/>
+    <meta property="og:image"
+          content="{{ url_for('static', filename='https://cdn.imweb.me/upload/S2017101059dc82fe9c146/5a71fecf5431c.jpg') }}"/>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <title>모아보기</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="nav">
+        <div class="nav-left">
+          <b>제로웨이스트</b>
+          <b>{{ user_info.id }}</b>
+        </div>
+        <div class="nav-right" onclick="">
+          <a href="/mypage/{{ user_info.id }}"><i class="fas fa-user"></i></a>
+        </div>
+      </div>
+      <div class="tab">
+        <div class="tab-sub see-all active"><i class="fas fa-search"></i> 모아보기</div>
+        <div class="tab-sub see-search"><i class="fas fa-heart"></i> 탐색하기</div>
+      </div>
+      <hr/>
+      <div class="content-container">
+        {#   see-all-area   #}
+        <div class="see-all-area">
+          <div class="card-container">
+            <img id="placeholder_img" class="none" src="{{ url_for('static', filename='placeholder2.png') }}">
+            {% for article in articles %}
+              {% if article.marking_by_me == True %}
+                <div class="card true">
+                  <div class="card-header">
+                    <img
+                        src="{{ article.img_url }}"
+                        alt="">
+                  </div>
+                  <div class="card-body">
+                    <div class="post_id">
+                      <a href="{{ article.article_url }}" target="_blank"> {{ article.title }}</a>
+                    </div>
+                    <div class="desc" id="{{ article._id }}-contents">
+                      {% for like in likes %}
+                        {% if article._id == like.article_id %}
+                          {% if like.memo=='' %}
+                            <b>메모를 적어 주세요!</b>
+                          {% else %}
+                            {{ like.memo }}
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                      <textarea id="{{ article._id }}-edit" name="" cols="10" rows="8"></textarea>
+                    </div>
+                    <div class="edit-btn" onclick="textarea_edit_post('{{ article._id }}')"><i
+                        class="fas fa-plus-circle" id="{{ article._id }}-icon"></i>
+                    </div>
+                    <div class="body-right">
+                      <button class="save-btn" onclick="edit_memo('{{ article._id }}')" id="{{ article._id }}-save-btn">
+                        저장
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            <div class="not-user-info">
+              <div class="index-desc">
+                <p>다른 분들은 어떻게 </p>
+                <p>제로웨이스트에 참여하고 계실까요?</p>
+              </div>
+              <a class="icon-index" onclick="sign_out()">
+                탐색 하기&nbsp;&nbsp;&nbsp;
+                <span class="index-icon is-small">
+            <i class="fas fa-search"></i>
+        </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {#   see-search-area   #}
+        <div class="see-search-area">
+          <div class="card-container">
+
+            {% for article in articles %}
+              <div class="card" id="{{ article._id }}">
+                <div class="card-header">
+                  <img
+                      src="{{ article.img_url }}"
+                      alt="">
+                  <div class="search-desc">
+
+                    {% for tag in article.tags %}
+                      <div class="tag">
+                        <span>{{ tag }}</span>
+                      </div>
+                    {% endfor %}
+
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="search-card-body">
+                    <a class="search-title" target="_blank" href="{{ article.article_url }}">{{ article.title }}</a>
+                    <a class="marking" aria-label="marking" onclick="toggle_marking('{{ article._id }}', 'marking')">
+
+                      {% if article.marking_by_me == True %}
+                        <i class="fas fa-bookmark "></i> </a>
+                      {% else %}
+                        <i class="far fa-bookmark "></i> </a>
+                      {% endif %}
+
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
