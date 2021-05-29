@@ -2,9 +2,6 @@
 
 <h1 align="center" style="color:red"> 항해99 Cpt#1 Zero-waste  :zap: </h1>
 
-</br></br>
-
-## 🌏 <strike>http://hh99zerowaste.shop/</strike>
 
 </br>
 
