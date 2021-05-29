@@ -4,7 +4,7 @@
 
 </br></br>
 
-## 🌏 http://hh99zerowaste.shop/
+## 🌏 <strike>http://hh99zerowaste.shop/</strike>
 
 </br>
 
